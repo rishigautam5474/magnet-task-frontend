@@ -29,7 +29,7 @@ This is the frontend for the Task Manager application, built using React.js. It 
 1. Create a `.env` file in the root directory.
 2. Add the following environment variable:
    ```env
-   REACT_APP_API_BASE_URL=http://localhost:5000/api
+   REACT_APP_API_BASE_URL=http://localhost:4000
    ```
 
 ## Usage
