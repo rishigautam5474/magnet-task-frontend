@@ -1,70 +1,106 @@
-# Getting Started with Create React App
+# Task Manager Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is the frontend for the Task Manager application, built using React.js. It provides an intuitive interface for managing tasks, including creating, reading, updating, and deleting tasks.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Responsive Design**: Fully responsive UI, compatible with all devices.
+- **Task Management**: Create, edit, delete, and view tasks with details like title, description, due date, status, and priority.
+- **User Authentication**: Secure login and registration system integrated with JWT.
+- **Dynamic UI**: Real-time updates to reflect task modifications.
 
-### `npm start`
+## Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/task-manager-frontend.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd task-manager-frontend
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Configuration
 
-### `npm test`
+1. Create a `.env` file in the root directory.
+2. Add the following environment variable:
+   ```env
+   REACT_APP_API_BASE_URL=http://localhost:5000/api
+   ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Usage
 
-### `npm run build`
+### Start the Development Server
+Run the application in development mode:
+```bash
+npm start
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The app will be accessible at `http://localhost:3000`.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Build for Production
+Build the app for production:
+```bash
+npm run build
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The production-ready files will be in the `build/` directory.
 
-### `npm run eject`
+## Project Structure
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```plaintext
+├── src
+│   ├── components       # Reusable React components
+│   ├── pages            # Application pages (e.g., Home, Login, Task List)
+│   ├── services         # API integration logic
+│   ├── context          # Context for global state management
+│   ├── App.js           # Main application component
+│   ├── index.js         # Entry point
+├── public
+├── .env
+├── package.json
+└── README.md
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Dependencies
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- **react**: JavaScript library for building user interfaces.
+- **react-router-dom**: Routing library for React.
+- **axios**: HTTP client for API calls.
+- **bootstrap**: CSS framework for styling.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## API Integration
+The frontend communicates with the backend through RESTful APIs. Ensure the backend server is running and accessible at the base URL specified in the `.env` file.
 
-## Learn More
+## Available Pages
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- **Task List**: View all tasks with options to edit or delete.
+- **Create Task**: Form to add a new task.
+- **Edit Task**: Form to update an existing task.
+- **Login**: User authentication page.
+- **Register**: New user registration page.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Contribution
 
-### Code Splitting
+1. Fork the repository.
+2. Create a new branch:
+   ```bash
+   git checkout -b feature-name
+   ```
+3. Commit your changes:
+   ```bash
+   git commit -m "Add feature-name"
+   ```
+4. Push to the branch:
+   ```bash
+   git push origin feature-name
+   ```
+5. Create a pull request.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## License
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is licensed under the MIT License. See the LICENSE file for details.
