@@ -13,7 +13,7 @@ This is the frontend for the Task Manager application, built using React.js. It 
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/task-manager-frontend.git
+   git clone https://github.com/rishigautam5474/magnet-task-frontend.git
    ```
 2. Navigate to the project directory:
    ```bash
