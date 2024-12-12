@@ -101,6 +101,3 @@ The frontend communicates with the backend through RESTful APIs. Ensure the back
    ```
 5. Create a pull request.
 
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
