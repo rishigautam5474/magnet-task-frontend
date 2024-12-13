@@ -3,7 +3,7 @@ import taskModel from "../models/task.model";
 import { useNavigate, useParams } from "react-router-dom";
 import { showSuccessAlert } from "../lib/helper";
 
-const EditTask = ({ task, handleUpdateTask, handleCancelEdit }) => {
+const EditTask = () => {
   const { id } = useParams();
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
@@ -14,9 +14,6 @@ const EditTask = ({ task, handleUpdateTask, handleCancelEdit }) => {
     dueDate: "",
     status: "",
   });
-
-//   console.log(accessTask,"accessTask++++++++")
-//   console.log(tasks,"tasks++++++++")
 
   const getTaskList = async () => {
     try {
@@ -41,7 +38,7 @@ const EditTask = ({ task, handleUpdateTask, handleCancelEdit }) => {
 
   useEffect(() => {
     getTaskList();
-  }, [task]);
+  }, [tasks]);
 
   const handleChange = (e) => {
     setAccessTask({ ...accessTask, [e.target.name]: e.target.value });
@@ -80,7 +77,7 @@ const EditTask = ({ task, handleUpdateTask, handleCancelEdit }) => {
                     className="form-control"
                     id="title"
                     name="title"
-                    value={accessTask?.title}
+                    value={accessTask?.title || ""}
                     onChange={handleChange}
                     placeholder="Enter task title"
                   />
@@ -93,7 +90,7 @@ const EditTask = ({ task, handleUpdateTask, handleCancelEdit }) => {
                     className="form-control"
                     id="description"
                     name="description"
-                    value={accessTask?.description}
+                    value={accessTask?.description || ""}
                     onChange={handleChange}
                     placeholder="Enter task description"
                   ></textarea>
@@ -107,7 +104,7 @@ const EditTask = ({ task, handleUpdateTask, handleCancelEdit }) => {
                     className="form-control"
                     id="dueDate"
                     name="dueDate"
-                    value={accessTask?.dueDate}
+                    value={accessTask?.dueDate || ""}
                     onChange={handleChange}
                   />
                 </div>
@@ -119,7 +116,7 @@ const EditTask = ({ task, handleUpdateTask, handleCancelEdit }) => {
                     className="form-select"
                     id="status"
                     name="status"
-                    value={accessTask?.status}
+                    value={accessTask?.status || ""}
                     onChange={handleChange}
                   >
                     <option value="pending">Pending</option>
@@ -134,7 +131,7 @@ const EditTask = ({ task, handleUpdateTask, handleCancelEdit }) => {
                     className="form-select"
                     id="priority"
                     name="priority"
-                    value={accessTask?.priority}
+                    value={accessTask?.priority || ""}
                     onChange={handleChange}
                     disabled 
                   >

@@ -4,7 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import taskModel from "../models/task.model";
 import {
   showConfirmDialog,
-  showInfoAlert,
   showSuccessAlert,
 } from "../lib/helper";
 
@@ -70,9 +69,8 @@ const TaskList = () => {
                   <p className="text-center">No data found</p>
                 ) : (
                   tasks?.map((task) => (
-                    <>
+                    <div key={task._id}>
                       <li
-                        key={task._id}
                         className="list-group-item d-flex flex-column"
                       >
                         <div className="d-flex justify-content-between align-items-center">
@@ -114,7 +112,7 @@ const TaskList = () => {
                         </div>
                       </li>
                       <hr />
-                    </>
+                    </div>
                   ))
                 )}
               </ul>
