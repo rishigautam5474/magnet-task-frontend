@@ -18,24 +18,6 @@ export const showErrorAlert = (title, text) => {
   });
 };
 
-export const showWarningAlert = (title, text) => {
-  Swal.fire({
-    icon: "warning",
-    title,
-    text,
-    confirmButtonColor: "#f0ad4e",
-  });
-};
-
-export const showInfoAlert = (title, text) => {
-  Swal.fire({
-    icon: "info",
-    title,
-    text,
-    confirmButtonColor: "#17a2b8",
-  });
-};
-
 export const showConfirmDialog = async (title, text) => {
   const result = await Swal.fire({
     title,

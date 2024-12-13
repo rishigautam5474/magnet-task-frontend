@@ -8,7 +8,6 @@ class AuthModel {
   }
 
   async loginUser(data = []) {
-    // console.log(data, "data++++++++");
     return await axiosInstance.post("/api/users/login", data);
   }
 

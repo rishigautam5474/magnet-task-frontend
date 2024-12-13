@@ -5,6 +5,10 @@ class TaskModel {
     return await axiosInstance.get("/api/users/task-lists");
   }
 
+  async allTaskAccess() {
+    return await axiosInstance.get("/api/tasks");
+  }
+
   async createTask(data = []) {
     return await axiosInstance.post("/api/tasks/create", data);
   }

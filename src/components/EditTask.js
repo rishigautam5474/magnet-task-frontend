@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import taskModel from "../models/task.model";
 import { useNavigate, useParams } from "react-router-dom";
-import { showSuccessAlert } from "../lib/helper";
+import { showErrorAlert, showSuccessAlert } from "../lib/helper";
 
 const EditTask = () => {
   const { id } = useParams();
@@ -38,7 +38,7 @@ const EditTask = () => {
 
   useEffect(() => {
     getTaskList();
-  }, [tasks]);
+  }, []);
 
   const handleChange = (e) => {
     setAccessTask({ ...accessTask, [e.target.name]: e.target.value });
@@ -52,10 +52,13 @@ const EditTask = () => {
         if (result) {
           // console.log(result)
           showSuccessAlert("success", result.message);
-          navigate("/");
+          navigate("/index");
         }
       });
-    } catch (error) {}
+    } catch (error) {
+      console.log(error?.response?.data?.message);
+      showErrorAlert("error", error?.response?.data?.message);
+    }
   };
 
   return (
@@ -133,7 +136,7 @@ const EditTask = () => {
                     name="priority"
                     value={accessTask?.priority || ""}
                     onChange={handleChange}
-                    disabled 
+                    disabled
                   >
                     <option value="low">Low</option>
                     <option value="medium">Medium</option>

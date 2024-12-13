@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import taskModel from "../models/task.model";
-import { showToast } from "../lib/helper";
+import { showErrorAlert, showToast } from "../lib/helper";
 import { useNavigate } from "react-router-dom";
 
 const TaskManager = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -33,12 +33,14 @@ const TaskManager = () => {
           if (result) {
             // console.log(result);
             showToast("success", result?.message);
-            navigate("/")
+            navigate("/index");
           }
         });
-      }
+      } 
     } catch (error) {
-      console.log(error);
+      // console.log(error?.response?.data?.message);
+      showErrorAlert("error", error?.response?.data?.message);
+      navigate("/login")
     }
   };
 
@@ -129,23 +131,7 @@ const TaskManager = () => {
                   </button>
                 </div>
               </form>
-              <ul className="list-group">
-                {/* {tasks.map((task) => (
-                  <li key={task.id} className="list-group-item">
-                    <h5>{task.title} <span className="badge bg-secondary">{task.priority}</span></h5>
-                    <p>{task.description}</p>
-                    <small>Due: {task.dueDate} | Status: {task.status}</small>
-                    <div className="mt-2">
-                      <button
-                        className="btn btn-danger btn-sm"
-                        onClick={() => handleDeleteTask(task.id)}
-                      >
-                        Delete
-                      </button>
-                    </div>
-                  </li>
-                ))} */}
-              </ul>
+              <ul className="list-group"></ul>
             </div>
           </div>
         </div>

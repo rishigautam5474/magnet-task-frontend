@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import authModel from "../models/auth.model";
-import { showSuccessAlert } from "../lib/helper";
+import { showErrorAlert, showSuccessAlert } from "../lib/helper";
 
 const SignupPage = () => {
   const [formData, setFormData] = useState({
@@ -31,14 +31,15 @@ const SignupPage = () => {
           if (result) {
             // console.log(result);
             showSuccessAlert("success", result?.message);
-            navigate("/");
+            navigate("/login");
           }
         });
       } else {
         console.log("All fields are required");
       }
     } catch (error) {
-      console.log(error);
+      // console.log(error?.response?.data?.message);
+            showErrorAlert("error", error?.response?.data?.message);
     }
   };
 

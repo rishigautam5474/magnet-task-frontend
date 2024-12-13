@@ -2,13 +2,9 @@ import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link, useNavigate } from "react-router-dom";
 import taskModel from "../models/task.model";
-import {
-  showConfirmDialog,
-  showErrorAlert,
-  showSuccessAlert,
-} from "../lib/helper";
+import { showErrorAlert } from "../lib/helper";
 
-const TaskList = () => {
+const Home = () => {
   const [tasks, setTasks] = useState([]);
   const navigate = useNavigate();
   const [isData, setIsData] = useState(false);
@@ -16,11 +12,12 @@ const TaskList = () => {
   const getTaskList = async () => {
     try {
       await taskModel
-        .getTaskByUser()
+        .allTaskAccess()
         .then((result) => {
           if (result) {
-            setTasks(result?.tasks);
-            setIsData(result?.tasks);
+            // console.log(result?.data,"result+++++++++++++")
+            setTasks(result?.data);
+            setIsData(result?.data);
           }
         })
         .catch((error) => {
@@ -30,24 +27,6 @@ const TaskList = () => {
     } catch (error) {
       console.log(error?.response?.data?.message);
       showErrorAlert("error", error?.response?.data?.message);
-    }
-  };
-
-  const handleDelete = async (id) => {
-    try {
-      await showConfirmDialog(
-        "info",
-        "Are you sure you want to delete this task?"
-      ).then((result) => {
-        if (result) {
-          taskModel.deleteTask(id).then((result) => {
-            showSuccessAlert(result?.message);
-            getTaskList();
-          });
-        }
-      });
-    } catch (error) {
-      console.error("An error occurred while deleting the task:", error);
     }
   };
 
@@ -68,7 +47,7 @@ const TaskList = () => {
             </div>
             <div className="card-body">
               <ul className="list-group">
-                {isData.length === 0 ? (
+                {!isData ? (
                   <p className="text-center">No data found</p>
                 ) : (
                   tasks?.map((task) => (
@@ -81,22 +60,6 @@ const TaskList = () => {
                               {task.priority}
                             </span>
                           </h5>
-                          <div>
-                            <button
-                              className="btn btn-warning btn-sm me-2"
-                              onClick={() =>
-                                navigate(`/update-task/${task._id}`)
-                              }
-                            >
-                              Edit
-                            </button>
-                            <button
-                              className="btn btn-danger btn-sm"
-                              onClick={() => handleDelete(task._id)}
-                            >
-                              Delete
-                            </button>
-                          </div>
                         </div>
                         <div className="mt-2">
                           <p>{task.description}</p>
@@ -125,4 +88,4 @@ const TaskList = () => {
   );
 };
 
-export default TaskList;
+export default Home;

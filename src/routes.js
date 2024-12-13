@@ -5,6 +5,7 @@ import SignupPage from "./views/Signup";
 import TaskManager from "./components/CreateTask";
 import TaskList from "./components/Index";
 import EditTask from "./components/EditTask";
+import Home from "./components/Home";
 
 const routes = createBrowserRouter([
     {
@@ -13,6 +14,10 @@ const routes = createBrowserRouter([
         children: [
             {
                 path: "/",
+                element: <Home />
+            },
+            {
+                path: "/index",
                 element: <TaskList />
             },
             {

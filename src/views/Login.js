@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import authModel from "../models/auth.model";
-import { showErrorAlert, showSuccessAlert, showToast } from "../lib/helper";
+import { showErrorAlert, showToast } from "../lib/helper";
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
-  // const navigate = useNavigate()
   const [error, setError] = useState("");
 
   const handleChange = (e) => {
@@ -25,7 +24,7 @@ const LoginPage = () => {
               sessionStorage.setItem("token", result?.token);
               sessionStorage.setItem("userInfo", JSON.stringify(result?.user));
               showToast("success", result?.message);
-              window.location.assign('/'); 
+              window.location.assign('/index'); 
             }
           })
           .catch((error) => {
@@ -36,7 +35,6 @@ const LoginPage = () => {
         showToast("error", "Enter both email and password");
       }
     } catch (error) {
-      // Handle unexpected errors
       console.log(error?.response?.data?.message);
       showErrorAlert("error", error?.response?.data?.message);
     }
