@@ -70,46 +70,51 @@ const TaskList = () => {
                   <p className="text-center">No data found</p>
                 ) : (
                   tasks?.map((task) => (
-                    <li
-                      key={task._id}
-                      className="list-group-item d-flex flex-column"
-                    >
-                      <div className="d-flex justify-content-between align-items-center">
-                        <h5>
-                          {task.title}{" "}
-                          <span className="badge bg-secondary">
-                            {task.priority}
-                          </span>
-                        </h5>
-                        <div>
-                          <button
-                            className="btn btn-warning btn-sm me-2"
-                            onClick={() => navigate(`/update-task/${task._id}`)}
-                          >
-                            Edit
-                          </button>
-                          <button
-                            className="btn btn-danger btn-sm"
-                            onClick={() => handleDelete(task._id)}
-                          >
-                            Delete
-                          </button>
-                        </div>
-                      </div>
-                      <div className="mt-2">
-                        <p>{task.description}</p>
+                    <>
+                      <li
+                        key={task._id}
+                        className="list-group-item d-flex flex-column"
+                      >
                         <div className="d-flex justify-content-between align-items-center">
-                          <small className="text-muted">
-                            Status: {task?.status}
-                          </small>
-                          <small className="bg-secondary px-2 py-1 border rounded text-light fw-bold">
-                            {new Date(task?.dueDate).toLocaleDateString(
-                              "en-GB"
-                            )}
-                          </small>
+                          <h5>
+                            {task.title}{" "}
+                            <span className="badge bg-secondary">
+                              {task.priority}
+                            </span>
+                          </h5>
+                          <div>
+                            <button
+                              className="btn btn-warning btn-sm me-2"
+                              onClick={() =>
+                                navigate(`/update-task/${task._id}`)
+                              }
+                            >
+                              Edit
+                            </button>
+                            <button
+                              className="btn btn-danger btn-sm"
+                              onClick={() => handleDelete(task._id)}
+                            >
+                              Delete
+                            </button>
+                          </div>
                         </div>
-                      </div>
-                    </li>
+                        <div className="mt-2">
+                          <p>{task.description}</p>
+                          <div className="d-flex justify-content-between align-items-center">
+                            <small className="text-muted">
+                              Status: {task?.status}
+                            </small>
+                            <small className="bg-secondary px-2 py-1 border rounded text-light fw-bold">
+                              {new Date(task?.dueDate).toLocaleDateString(
+                                "en-GB"
+                              )}
+                            </small>
+                          </div>
+                        </div>
+                      </li>
+                      <hr />
+                    </>
                   ))
                 )}
               </ul>

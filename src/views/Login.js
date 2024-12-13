@@ -17,27 +17,31 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      if (formData.email !== "" || formData.password !== "") {
-        await authModel.loginUser(formData).then((result) => {
-          if (result) {
-            // console.log(result);
-            sessionStorage.setItem("token", result?.token)
-            sessionStorage.setItem('userInfo', JSON.stringify(result?.user))
-            showToast("success", result?.message)
-            window.location.assign('/')
-          }
-        }).catch ((error) => {
-          console.log(error?.response?.data?.message);
-          showErrorAlert('error', error?.response?.data?.message)
-        });
+      if (formData.email !== "" && formData.password !== "") {
+        await authModel
+          .loginUser(formData)
+          .then((result) => {
+            if (result) {
+              sessionStorage.setItem("token", result?.token);
+              sessionStorage.setItem("userInfo", JSON.stringify(result?.user));
+              showToast("success", result?.message);
+              window.location.assign('/'); 
+            }
+          })
+          .catch((error) => {
+            console.log(error?.response?.data?.message);
+            showToast("error", error?.response?.data?.message);
+          });
       } else {
-        console.log("Enter email and password");
+        showToast("error", "Enter both email and password");
       }
     } catch (error) {
+      // Handle unexpected errors
       console.log(error?.response?.data?.message);
-      showErrorAlert('error', error?.response?.data?.message)
+      showErrorAlert("error", error?.response?.data?.message);
     }
   };
+  
 
   return (
     <div

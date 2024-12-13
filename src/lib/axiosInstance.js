@@ -1,14 +1,16 @@
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 // Create an Axios instance
 const axiosInstance = axios.create({
   baseURL: process.env.REACT_APP_API_BASE_URL,
-  timeout: 10000, 
+  timeout: 10000,
   headers: {
     "Content-Type": "application/json",
   },
 });
 
+// Request Interceptor
 axiosInstance.interceptors.request.use(
   (config) => {
     const token = sessionStorage.getItem("token");
@@ -17,23 +19,22 @@ axiosInstance.interceptors.request.use(
     }
     return config;
   },
-  (error) => Promise.reject(error) // Directly return the error promise
+  (error) => Promise.reject(error)
 );
 
-// Add a response interceptor
+// Response Interceptor
 axiosInstance.interceptors.response.use(
-  (response) => {
-    // Return response data directly if no error
-    return response.data;
-  },
+  (response) => response.data,
   (error) => {
-    // Handle response errors
     if (error.response && error.response.status === 401) {
-      // Optionally handle unauthorized errors (e.g., logout the user)
       console.error("Unauthorized! Logging out...");
-      localStorage.removeItem("token");
-      // localStorage.removeItem("userInfo");
-      window.location.href = "/login";
+      sessionStorage.removeItem("token");
+      sessionStorage.removeItem("userInfo");
+
+      return Promise.reject({
+        ...error,
+        customMessage: "Session expired. Please log in again.",
+      });
     }
     return Promise.reject(error);
   }
