@@ -17,11 +17,11 @@ const EditTask = () => {
 
   const getTaskList = async () => {
     try {
-      const foundTask = await taskModel.getTaskByUser(id);
+      const foundTask = await taskModel.specificTaskAccess(id);
       if (foundTask) {
         const formattedTask = {
-          ...foundTask?.tasks[0],
-          dueDate: new Date(foundTask?.tasks[0]?.dueDate)
+          ...foundTask?.task,
+          dueDate: new Date(foundTask?.task?.dueDate)
             .toISOString()
             .split("T")[0],
         };

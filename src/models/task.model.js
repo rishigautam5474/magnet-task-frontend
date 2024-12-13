@@ -9,6 +9,10 @@ class TaskModel {
     return await axiosInstance.get("/api/tasks");
   }
 
+  async specificTaskAccess(id) {
+    return await axiosInstance.get("/api/tasks/"+id);
+  }
+
   async createTask(data = []) {
     return await axiosInstance.post("/api/tasks/create", data);
   }
